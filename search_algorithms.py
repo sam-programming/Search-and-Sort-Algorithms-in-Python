@@ -1,4 +1,4 @@
-#Binary search algorithm
+#Search Algorithms from Data Structures
 
 def Binary_Search(word, word_arr) :
     left = 0
