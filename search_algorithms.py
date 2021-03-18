@@ -63,6 +63,24 @@ for i in range(len(arr)) :
 
 print("Min = ", arr[min_index], " Max = ", arr[max_index])
 
+#test wether an array is sorted in ascending order
+
+def Is_Ascending(array):               # O(1)
+    for i in range(len(array)-1):      # O(1)#e
+        if array[i] > array[i+1]:      # O(1)#e
+            return False               # O(1)
+    return True                        # O(1)
+
+# Maximum number of comparisons = n - 1
+# Time complexity max{ O(n - 1), O(n - 1) }, O(n)
+    
+def Is_Palindrome(word):
+    reverse = ""
+    for letter in word:
+        reverse
+        
+       
+print(Is_Ascending(word_arr))
 Binary_Search('elfs', word_arr)
 print(Linear_Search('seldom', word_arr))
 print(Linear_Search_Min(word_arr))
