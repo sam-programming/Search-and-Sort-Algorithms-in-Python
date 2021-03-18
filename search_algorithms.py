@@ -46,6 +46,23 @@ def Linear_Search_Min(word_list):
             min_val = wrd
     return min_val
 
+#find the min and max of an array
+arr = [44, 5, 4, 2, 6, 8, 6, 7, 8, 44, 324, 645, 3, 2]
+
+minimum = arr[0]
+maximum = arr[0]
+min_index = max_index = 0;
+
+for i in range(len(arr)) :
+    if arr[i] > maximum:
+        maximum = arr[i]
+        max_index = i
+    if arr[i] < minimum:
+        minimum = arr[i]
+        min_index = i
+
+print("Min = ", arr[min_index], " Max = ", arr[max_index])
+
 Binary_Search('elfs', word_arr)
 print(Linear_Search('seldom', word_arr))
 print(Linear_Search_Min(word_arr))
