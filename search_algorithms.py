@@ -98,27 +98,78 @@ def Merge(arr1, arr2):
         j += 1    
     return arr3
 
-#Need a function to split the arrays??
-def Split(array):
-    left = 0
-    right = len(array)-1
-    left_arr = []
-    right_arr = []
-    #if the array length is greater than two, split it like so
-    if len(array) > 2: 
-        mid = (left + right) // 2
-        left_arr = array[left:mid-1]
-        right_arr = array[mid:right]
-    else : #if only two elements, split them easy like
-        left_arr = array[left]
-        right_arr = array[right]
-    return left_arr, right_arr #can i return two arrays?
+#For the recursive MergeSort, use Merge like before, but have a third parameter (arr)
+# so that the array can keep recursively updating.  Don't think i can create a new
+# list and return it, but I can try doing that if i have time.
+def Merge(arr, arr1, arr2):
+    i = 0 # loop control for array 1
+    j = 0 # loop control for array 2
+    k = 0
+    while i < len(arr1) and j < len(arr2): #will terminate when 1 condition fails
+        if arr1[i] < arr2[j]:
+            arr[k] = arr1[i]
+            i += 1                
+        else:
+            arr[k] = arr2[j]
+            j += 1
+        k += 1
+        
+    #at this point 1 of the arrays should have elements that have not been merged
+    #here we find which array that is and add the remaining elements to arr3    
+    while i < len(arr1):   
+        arr[k] = arr1[i]
+        i += 1
+        k += 1
+    while j < len(arr2):
+        arr[k] = arr2[j]
+        j += 1
+        k += 1
+
+def MergeSort(arr):
+    if len(arr) > 1: #until array is split into single elements
+        mid = len(arr) // 2 #find the middle
+        #split array
+        left_arr = arr[:mid]    #left side of the array
+        right_arr = arr[mid:]   #right side of the array
+
+        MergeSort(left_arr)     #recursively call MergeSort on sides
+        print('left arr: ', left_arr)
+        MergeSort(right_arr)
+        print('right arr: ', right_arr)
+
+        Merge(arr, left_arr, right_arr) #Call merge
+        print('Merged arr: ', arr)
+
 # Swap two values in an array
 def Swap(arr, i1, i2): #array, index 1, index 2
     temp = arr[i1]
     arr[i1] = arr[i2]
     arr[i2] = temp
 
+    
+#quick sort - more recursion
+#we take the first value of the array as the pivot value
+def QuickSort(arr, left, right):
+    if left < right:  #this is important
+        p = Partition(arr, left, right)
+        QuickSort(arr, left, p-1)
+        QuickSort(arr, p+1, right)
+
+#partition the array using this algorithm
+def Partition(arr, left, right):    
+    p_index = left #pivot indext
+    pivot = arr[left]  #pivot value
+
+    for index in range(left, right): 
+        if arr[index] < pivot:            #if value is less than pivot
+            arr[p_index] = arr[index]     #swap pivot with index
+            arr[index] = arr[p_index + 1]
+            arr[p_index + 1] = pivot      #place pivot where new value was
+            p_index += 1                  #increment p_index
+    return p_index
+
+
+   
 #Selection Sort -  not hitting last element
 #O(n^2)
 def Selection_Sort(arr):
@@ -172,5 +223,7 @@ merged_arr = Merge(arr1, arr2)
 #print(Linear_Search('seldom', word_arr))
 #print(Linear_Search_Min(word_arr))
 #print(Linear_Search_Max(word_arr))
-      
+#print(us_arr)
+#QuickSort(us_arr, 0, len(us_arr))
+#print(us_arr)
         
