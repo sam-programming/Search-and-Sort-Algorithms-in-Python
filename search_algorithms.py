@@ -98,7 +98,21 @@ def Merge(arr1, arr2):
         j += 1    
     return arr3
 
-
+#Need a function to split the arrays??
+def Split(array):
+    left = 0
+    right = len(array)-1
+    left_arr = []
+    right_arr = []
+    #if the array length is greater than two, split it like so
+    if len(array) > 2: 
+        mid = (left + right) // 2
+        left_arr = array[left:mid-1]
+        right_arr = array[mid:right]
+    else : #if only two elements, split them easy like
+        left_arr = array[left]
+        right_arr = array[right]
+    return left_arr, right_arr #can i return two arrays?
 # Swap two values in an array
 def Swap(arr, i1, i2): #array, index 1, index 2
     temp = arr[i1]
